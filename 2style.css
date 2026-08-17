@@ -1,0 +1,1113 @@
+
+:root {
+    /* Colors */
+    --color-primary: #6c63ff;
+    --color-primary-dark: #5148d8;
+    --color-secondary: #00b894;
+
+    --color-background: #f8f9ff;
+    --color-surface: #ffffff;
+    --color-text: #22223b;
+    --color-text-light: #6c6c80;
+    --color-border: #e5e5ef;
+
+    /* Effects */
+    --shadow-small: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-large: 0 20px 50px rgba(0, 0, 0, 0.16);
+
+    /* Typography */
+    --font-main: "Poppins", sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Borders */
+    --radius-small: 8px;
+    --radius-medium: 16px;
+    --radius-large: 30px;
+
+    /* Transition */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.6s ease;
+
+    /* Container */
+    --container-width: 1200px;
+}
+
+
+/* =========================================================
+   2. DARK THEME VARIABLES
+   ========================================================= */
+
+body.dark-theme {
+    --color-background: #11111f;
+    --color-surface: #1b1b2d;
+    --color-text: #f5f5ff;
+    --color-text-light: #b5b5c7;
+    --color-border: #303047;
+
+    --shadow-small: 0 5px 15px rgba(0, 0, 0, 0.25);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --shadow-large: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================================
+   3. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal);
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   4. COMMON CONTAINER
+   ========================================================= */
+
+.header__container,
+.hero,
+.section,
+.footer__container {
+    width: min(92%, var(--container-width));
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   5. HEADER
+   ========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background-color: var(--color-surface);
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+.header__container {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--spacing-sm);
+}
+
+
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: var(--color-text);
+
+    transition:
+        transform var(--transition-fast),
+        color var(--transition-fast);
+}
+
+
+.header__logo span {
+    color: var(--color-primary);
+}
+
+
+.header__logo:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.header__nav {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+
+    width: 100%;
+
+    display: none;
+    flex-direction: column;
+
+    padding: var(--spacing-sm);
+
+    background-color: var(--color-surface);
+
+    box-shadow: var(--shadow-medium);
+}
+
+
+.header__nav.active {
+    display: flex;
+}
+
+
+.header__link {
+    position: relative;
+
+    padding: 0.8rem 1rem;
+
+    color: var(--color-text-light);
+
+    font-weight: 500;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* Advanced selector */
+.header__link:not(.header__link--active):hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+
+.header__link--active {
+    color: var(--color-primary);
+}
+
+
+/* Pseudo-element */
+.header__link--active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 1rem;
+    bottom: 5px;
+
+    width: 25px;
+    height: 3px;
+
+    border-radius: 10px;
+
+    background-color: var(--color-primary);
+}
+
+
+.header__toggle {
+    border: none;
+    background: transparent;
+
+    font-size: 1.5rem;
+
+    color: var(--color-text);
+
+    transition: transform var(--transition-fast);
+}
+
+
+.header__toggle:hover {
+    transform: scale(1.1);
+}
+
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    background-color: var(--color-background);
+
+    transition:
+        transform var(--transition-normal),
+        background-color var(--transition-normal);
+}
+
+
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.05);
+}
+
+
+/* =========================================================
+   6. HERO SECTION
+   ========================================================= */
+
+.hero {
+    min-height: calc(100vh - 70px);
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    align-items: center;
+
+    gap: var(--spacing-lg);
+
+    padding-block: var(--spacing-xl);
+}
+
+
+.hero__content {
+    animation: fadeInLeft 1s ease forwards;
+}
+
+
+.hero__subtitle {
+    color: var(--color-primary);
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    margin-bottom: var(--spacing-xs);
+}
+
+
+.hero__title {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+
+    line-height: 1.1;
+
+    margin-bottom: var(--spacing-sm);
+}
+
+
+.hero__title-highlight {
+    color: var(--color-primary);
+
+    position: relative;
+}
+
+
+/* Pseudo-element */
+.hero__title-highlight::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -5px;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: var(--color-secondary);
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: transform var(--transition-normal);
+}
+
+
+.hero__title-highlight:hover::after {
+    transform: scaleX(1);
+}
+
+
+.hero__role {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+
+    color: var(--color-text-light);
+
+    margin-bottom: var(--spacing-sm);
+}
+
+
+.hero__description {
+    max-width: 600px;
+
+    color: var(--color-text-light);
+
+    margin-bottom: var(--spacing-md);
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+   ========================================================= */
+
+.hero__buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: var(--spacing-sm);
+}
+
+
+/* =========================================================
+   BUTTON COMPONENT
+   ========================================================= */
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 0.75rem 1.5rem;
+
+    border-radius: 50px;
+
+    font-weight: 600;
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal),
+        background-color var(--transition-normal);
+}
+
+
+.button:hover {
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-medium);
+}
+
+
+.button--primary {
+    background-color: var(--color-primary);
+
+    color: #ffffff;
+}
+
+
+.button--primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+
+.button--secondary {
+    border: 2px solid var(--color-primary);
+
+    color: var(--color-primary);
+
+    background-color: transparent;
+}
+
+
+.button--secondary:hover {
+    background-color: var(--color-primary);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   HERO IMAGE
+   ========================================================= */
+
+.hero__image-container {
+    display: flex;
+
+    justify-content: center;
+
+    animation: fadeInRight 1s ease forwards;
+}
+
+
+.hero__image-wrapper {
+    width: min(80vw, 350px);
+    aspect-ratio: 1;
+
+    padding: 10px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    animation: floating 4s ease-in-out infinite;
+}
+
+
+.hero__image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 8px solid var(--color-surface);
+}
+
+
+/* =========================================================
+   7. COMMON SECTION
+   ========================================================= */
+
+.section {
+    padding-block: var(--spacing-xl);
+}
+
+
+.section__header {
+    text-align: center;
+
+    margin-bottom: var(--spacing-lg);
+}
+
+
+.section__subtitle {
+    color: var(--color-primary);
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.section__title {
+    font-size: clamp(2rem, 6vw, 3rem);
+
+    margin-top: var(--spacing-xs);
+}
+
+
+/* =========================================================
+   8. SKILLS GRID
+   ========================================================= */
+
+.skills__grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: var(--spacing-md);
+}
+
+
+.skill-card {
+    padding: var(--spacing-md);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-medium);
+
+    text-align: center;
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+
+.skill-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: var(--shadow-medium);
+
+    border-color: var(--color-primary);
+}
+
+
+/* Advanced selector */
+.skill-card:nth-child(even) {
+    transform-origin: center;
+}
+
+
+.skill-card:nth-child(even):hover {
+    transform: translateY(-8px) rotate(1deg);
+}
+
+
+.skill-card__icon {
+    font-size: 2.5rem;
+
+    margin-bottom: var(--spacing-sm);
+
+    transition: transform var(--transition-normal);
+}
+
+
+.skill-card:hover .skill-card__icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+
+.skill-card__title {
+    margin-bottom: var(--spacing-xs);
+}
+
+
+.skill-card__text {
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   9. PROJECTS GRID
+   ========================================================= */
+
+.projects__grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: var(--spacing-md);
+}
+
+
+.project-card {
+    overflow: hidden;
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+.project-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: var(--shadow-large);
+}
+
+
+/* =========================================================
+   PROJECT IMAGE
+   ========================================================= */
+
+.project-card__image-container {
+    overflow: hidden;
+
+    aspect-ratio: 16 / 9;
+}
+
+
+.project-card__image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform var(--transition-slow);
+}
+
+
+.project-card:hover .project-card__image {
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   PROJECT CONTENT
+   ========================================================= */
+
+.project-card__content {
+    padding: var(--spacing-md);
+}
+
+
+.project-card__category {
+    color: var(--color-primary);
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.project-card__title {
+    font-size: 1.4rem;
+
+    margin-block: var(--spacing-xs);
+}
+
+
+.project-card__description {
+    color: var(--color-text-light);
+
+    margin-bottom: var(--spacing-sm);
+}
+
+
+.project-card__link {
+    color: var(--color-primary);
+
+    font-weight: 600;
+
+    transition:
+        letter-spacing var(--transition-fast),
+        color var(--transition-fast);
+}
+
+
+.project-card__link:hover {
+    color: var(--color-primary-dark);
+
+    letter-spacing: 0.5px;
+}
+
+
+/* Featured project */
+.project-card--featured {
+    border: 2px solid var(--color-primary);
+}
+
+
+/* =========================================================
+   10. CTA SECTION
+   ========================================================= */
+
+.cta {
+    width: min(92%, var(--container-width));
+
+    margin: 0 auto var(--spacing-xl);
+
+    padding: var(--spacing-lg) var(--spacing-md);
+
+    border-radius: var(--radius-large);
+
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+
+    color: #ffffff;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.cta::before,
+.cta::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border: 2px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+}
+
+
+.cta::before {
+    top: -70px;
+    left: -70px;
+}
+
+
+.cta::after {
+    bottom: -70px;
+    right: -70px;
+}
+
+
+.cta__content {
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.cta__title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+
+    margin-bottom: var(--spacing-sm);
+}
+
+
+.cta__text {
+    max-width: 650px;
+
+    margin: 0 auto var(--spacing-md);
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+
+.footer {
+    background-color: var(--color-surface);
+
+    border-top: 1px solid var(--color-border);
+}
+
+
+.footer__container {
+    min-height: 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: var(--spacing-sm);
+
+    text-align: center;
+}
+
+
+.footer__copyright {
+    color: var(--color-text-light);
+
+    font-size: 0.9rem;
+}
+
+
+.footer__social {
+    display: flex;
+
+    gap: var(--spacing-md);
+}
+
+
+.footer__link {
+    color: var(--color-primary);
+
+    font-weight: 500;
+
+    transition:
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+.footer__link:hover {
+    color: var(--color-primary-dark);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   12. ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeInLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes fadeInRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+
+/* =========================================================
+   13. TABLET RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (min-width: 600px) {
+
+    .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .projects__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .project-card--featured {
+        grid-column: span 2;
+    }
+
+
+    .footer__container {
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        text-align: left;
+    }
+
+}
+
+
+/* =========================================================
+   14. DESKTOP RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (min-width: 900px) {
+
+    /* Header */
+
+    .header__toggle {
+        display: none;
+    }
+
+
+    .header__nav {
+        position: static;
+
+        width: auto;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        padding: 0;
+
+        background-color: transparent;
+
+        box-shadow: none;
+
+        gap: 0.5rem;
+    }
+
+
+    .header__link:not(.header__link--active):hover {
+        transform: translateY(-2px);
+    }
+
+
+    /* Hero */
+
+    .hero {
+        grid-template-columns: 1.2fr 0.8fr;
+
+        gap: var(--spacing-xl);
+    }
+
+
+    .hero__image-container {
+        justify-content: flex-end;
+    }
+
+
+    /* Skills */
+
+    .skills__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    /* Projects */
+
+    .projects__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .project-card--featured {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* =========================================================
+   15. LARGE SCREEN
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .hero {
+        min-height: 750px;
+    }
+
+
+    .hero__image-wrapper {
+        width: 400px;
+    }
+
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+    outline: 3px solid var(--color-secondary);
+
+    outline-offset: 4px;
+}
+
+
+::selection {
+    background-color: var(--color-primary);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   17. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+    }
+    /* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+
+
+}
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.skill-card,
+.project-card,
+.section__header {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+
+.skill-card.is-visible,
+.project-card.is-visible,
+.section__header.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
